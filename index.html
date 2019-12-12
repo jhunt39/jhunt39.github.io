@@ -2,6 +2,37 @@
     <head>
         <title>Hello World</title>
         <link rel="stylesheet" href="main.css">
+         <!-- Start of Neustar Real User Measurements code -->
+        <script type="text/javascript">
+            var ns_rum = {};
+            // Optional: uncomment the second line below in order to enable Perceived Load Time (timeout in seconds)
+            // Then add a call to ns_rum.onPerceivedLoad(); in your code to mark the perceived load event for each page that has the RUM tag
+            //ns_rum.perceivedLoadTimeout = 8;
+            var t_pagestart = new Date().getTime(), t_pageend;
+            ns_rum.init = function() {
+                t_pageend = new Date().getTime();
+                var s = document.createElement ('script'); s.id = 'rum'; s.type = 'text/javascript';
+                s.src = ('https:' === document.location.protocol ? 'https://' : 'http://') + 'd2lo2tipcl3aii.cloudfront.net/2A3B58FF30E14CB39E6AC67C953F8505/neustar.beacon.js';
+                document.getElementsByTagName('head')[0].appendChild(s);
+            };
+            window.addEventListener ? window.addEventListener('load', ns_rum.init, false) : window.attachEvent ? window.attachEvent('onload', ns_rum.init) : false;
+            ns_rum.errors = [];
+            ns_rum.ogErrorHandler = window.onerror;
+            window.onerror = function rumErrorHandler(msg, url, line) {
+                ns_rum.errors.push({'url': url, 'line': line, 'msg': msg});
+                if (ns_rum.ogErrorHandler) {return ns_rum.ogErrorHandler(msg, url, line);}
+                return false;
+            };
+            ns_rum.onPerceivedLoad = function(description) {
+                if (typeof(ns_rum.perceivedLoadTimeEnd) === "undefined") {
+                    ns_rum.perceivedLoadTimeEnd = new Date().getTime();
+                    if (typeof(description) !== "undefined") {
+                        ns_rum.perceivedLoadTimeDescription = description;
+                    }
+                }
+            };
+        </script>
+        <!-- End of Neustar Real User Measurements code -->            
     </head>
     <body>
         <p>Hello World</p>
